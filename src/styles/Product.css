@@ -1,0 +1,73 @@
+.productContainer {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 95%;
+  margin: 0 auto;
+  height: 150px;
+  margin-top: 15px;
+  display: flex;
+  padding: 10px;
+}
+.productLeftContainer {
+  display: flex;
+  flex: 0.5;
+}
+.productImage {
+  aspect-ratio: 1/1;
+  height: 130px;
+  margin-right: 25px;
+}
+.productNameRating {
+  width: 50%;
+}
+.productNameRating {
+  font-size: 22px;
+  font-weight: 600;
+}
+.price {
+  font-size: 20px;
+}
+.productRightContainer {
+  flex: 0.5;
+  display: flex;
+}
+.productDescription {
+  padding: 0px 5px;
+}
+.productsButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5px;
+}
+.trashIcon {
+  color: red;
+}
+.editIcon {
+  margin: 10px 0px;
+  color: #8d3daf;
+}
+.addCartIcon {
+  color: #4dd637;
+}
+.icon {
+  font-size: 20px;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+.icon:hover {
+  transform: scale(1.2);
+}
+
+/* Product Edit mode */
+.editInput {
+  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.productDescriptionEdit {
+  width: 95%;
+  resize: none;
+  border-radius: 10px;
+  padding: 5px;
+}
