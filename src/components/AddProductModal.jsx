@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { createProductAPI } from "../apiHelper";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/AddProductModal.css";
 
 const AddProductModal = ({ close, addproduct }) => {
@@ -19,6 +21,8 @@ const AddProductModal = ({ close, addproduct }) => {
 
   // creating the product
   const onAddHandler = () => {
+    if (title === "" || price === "" || description === "" || image === "")
+      return toast("Product Deleted", { type: "error" });
     createProductAPI(values).then((res) => addproduct(res));
   };
   return (
@@ -65,6 +69,7 @@ const AddProductModal = ({ close, addproduct }) => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
