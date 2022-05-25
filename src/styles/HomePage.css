@@ -3,3 +3,23 @@
   margin: 0 auto;
   margin-top: 20px;
 }
+.addButton {
+  position: fixed;
+  left: 10px;
+  bottom: 20px;
+  aspect-ratio: 1/1;
+  height: 60px;
+  border-radius: 100%;
+  background-color: #8d3daf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  user-select: none;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+.addButton:hover {
+  transform: scale(1.2);
+}

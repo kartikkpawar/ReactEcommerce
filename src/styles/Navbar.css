@@ -38,6 +38,7 @@
   color: black;
   margin-right: 15px;
 }
+
 .navLink:visited {
   color: black;
   text-decoration: none;
@@ -45,15 +46,7 @@
 .linksContainer > span {
   margin-right: 15px;
 }
-.addProduct {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-}
-.addProductIcon {
-  margin-left: 5px;
-}
+
 .profileCartContainer {
   padding: 10px 20px 10px 0px;
   display: flex;
