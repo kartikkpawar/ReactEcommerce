@@ -7,6 +7,7 @@ import { BsSave, BsCartPlus } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../app/cartSlice";
 import { nanoid } from "nanoid";
+import { deleteProductAPI, updateProductAPI } from "../apiHelper";
 
 const Product = ({ product, ratings, deleteproduct }) => {
   const dispatch = useDispatch();
@@ -56,9 +57,14 @@ const Product = ({ product, ratings, deleteproduct }) => {
   };
 
   const saveProduct = () => {
+    updateProductAPI(
+      { title, description, image: product.image, id: product.id, price },
+      product.id
+    );
     setEditMode(false);
   };
   const handleDeleteProduct = () => {
+    deleteProductAPI(product.id);
     deleteproduct(product.id);
   };
   return editMode ? (

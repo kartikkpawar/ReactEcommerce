@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getAllProductssAPI } from "../apiHelper";
 import Product from "../components/Product";
-import { data } from "../data";
 import "../styles/HomePage.css";
 
 const HomePage = () => {
-  const [products, setProducts] = useState(data.products);
+  useEffect(() => {
+    getAllProductssAPI().then((data) => setProducts(data));
+  }, []);
+
+  const [products, setProducts] = useState([]);
   const deleteProductHandler = (id) => {
     const copyProcducts = [...products];
     const newProducts = copyProcducts.filter((product) => id !== product.id);
@@ -13,18 +17,19 @@ const HomePage = () => {
   return (
     <div className="homePage">
       <div className="productsContainer">
-        {products.map((product) => (
-          <Product
-            key={product.id}
-            product={product}
-            ratings={Array(Math.floor(Math.random() * (5 - 1 + 1)) + 1).fill(
-              ""
-            )}
-            deleteproduct={(id) => {
-              deleteProductHandler(id);
-            }}
-          />
-        ))}
+        {products.length > 0 &&
+          products.map((product) => (
+            <Product
+              key={product.id}
+              product={product}
+              ratings={Array(Math.floor(Math.random() * (5 - 1 + 1)) + 1).fill(
+                ""
+              )}
+              deleteproduct={(id) => {
+                deleteProductHandler(id);
+              }}
+            />
+          ))}
       </div>
     </div>
   );
