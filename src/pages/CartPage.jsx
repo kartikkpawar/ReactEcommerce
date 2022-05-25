@@ -12,7 +12,7 @@ const CartPage = () => {
   return (
     <div className="cartPageContainer">
       <div className="cartProductsContainer">
-        {" "}
+        {/* conditionally loading the cart */}
         {items.length > 0 ? (
           items.map((product) => <CartProduct product={product} cart />)
         ) : (

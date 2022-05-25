@@ -4,6 +4,7 @@ import { BsCartDash } from "react-icons/bs";
 import { removeProduct } from "../app/cartSlice";
 import { useDispatch } from "react-redux";
 
+// Cart Products component
 const CartProduct = ({ product }) => {
   const dispatch = useDispatch();
 

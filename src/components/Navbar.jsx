@@ -5,6 +5,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+// Nav bar component
 const Navbar = () => {
   const { cartCount } = useSelector((state) => state.cart);
 
@@ -25,6 +26,7 @@ const Navbar = () => {
         <div className="avatar">KP</div>
         <NavLink to="/cart" className="navLink cartContainer">
           <AiOutlineShoppingCart className="cartIcon" />
+          {/* conditinoal rendering for cart value */}
           {cartCount !== 0 && <span className="cartValue">{cartCount}</span>}
         </NavLink>
       </div>

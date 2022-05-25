@@ -11,11 +11,13 @@ const AddProductModal = ({ close, addproduct }) => {
   });
   const { title, price, description, image } = values;
 
+  // handeling the input fields
   const onChangeHandler = (name) => (e) => {
     if (name === "price" && isNaN(e.target.value)) return;
     setValues({ ...values, [name]: e.target.value });
   };
 
+  // creating the product
   const onAddHandler = () => {
     createProductAPI(values).then((res) => addproduct(res));
   };

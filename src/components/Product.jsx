@@ -18,9 +18,11 @@ const Product = ({ product, ratings, deleteproduct }) => {
     ratingsVal: ratings,
     price: Math.floor(product.price * 10),
   });
+  // destructuring the values
   const { title, description, ratingsVal, price } = values;
   const [editMode, setEditMode] = useState(false);
 
+  // handleing the change
   const onChangeHandler = (name) => (e) => {
     const value = e.target.value;
     if (name === "ratings") {
@@ -33,6 +35,7 @@ const Product = ({ product, ratings, deleteproduct }) => {
       setValues({ ...values, [name]: value });
     }
   };
+  // handleing disacrd changes
   const discardChanges = () => {
     setValues({
       ...values,
@@ -44,6 +47,7 @@ const Product = ({ product, ratings, deleteproduct }) => {
     setEditMode(false);
   };
 
+  // adding to cart
   const handleAddToCart = () => {
     const newProduct = {
       ...product,
@@ -56,6 +60,7 @@ const Product = ({ product, ratings, deleteproduct }) => {
     dispatch(addProduct(newProduct));
   };
 
+  // updating the product
   const saveProduct = () => {
     updateProductAPI(
       { title, description, image: product.image, id: product.id, price },
@@ -67,6 +72,7 @@ const Product = ({ product, ratings, deleteproduct }) => {
     deleteProductAPI(product.id);
     deleteproduct(product.id);
   };
+  // conditinoally rendering the product card for doisplay and edit mode
   return editMode ? (
     <div className="productContainer">
       <div className="productLeftContainer">

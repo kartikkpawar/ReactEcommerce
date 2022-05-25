@@ -14,6 +14,8 @@ const HomePage = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const [products, setProducts] = useState([]);
+
+  // handleing deleting products
   const deleteProductHandler = (id) => {
     const copyProcducts = [...products];
     const newProducts = copyProcducts.filter((product) => id !== product.id);
@@ -21,11 +23,14 @@ const HomePage = () => {
 
     setProducts(newProducts);
   };
+
+  // handleing adding products
   const addProducthandler = (res) => {
     setProducts([...products, res]);
     setOpenModal(false);
     toast("Product Added", { type: "success" });
   };
+
   return (
     <div className="homePage">
       <div className="productsContainer">
