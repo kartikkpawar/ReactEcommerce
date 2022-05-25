@@ -4,8 +4,11 @@ import { BiShoppingBag } from "react-icons/bi";
 import { BsBagPlus } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { cartCount } = useSelector((state) => state.cart);
+
   return (
     <nav className="navbar">
       <div className="navLeft">
@@ -26,7 +29,7 @@ const Navbar = () => {
         <div className="avatar">KP</div>
         <NavLink to="/cart" className="navLink cartContainer">
           <AiOutlineShoppingCart className="cartIcon" />
-          <span className="cartValue">20</span>
+          {cartCount !== 0 && <span className="cartValue">{cartCount}</span>}
         </NavLink>
       </div>
     </nav>

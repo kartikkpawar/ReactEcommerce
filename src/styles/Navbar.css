@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  background: #fff;
+
+  max-width: 1600px;
 }
 .navLeft {
   display: flex;
@@ -70,7 +75,7 @@
 }
 .cartValue {
   position: absolute;
-  padding: 2px 4px;
+  padding: 2px 6px;
   border-radius: 100%;
   background-color: #8d3daf;
   font-size: 10px;

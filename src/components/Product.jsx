@@ -4,8 +4,13 @@ import { FiEdit2 } from "react-icons/fi";
 import { BiTrashAlt } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { BsSave, BsCartPlus } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../app/cartSlice";
+import { nanoid } from "nanoid";
 
-const Product = ({ product, ratings }) => {
+const Product = ({ product, ratings, deleteproduct }) => {
+  const dispatch = useDispatch();
+
   const [values, setValues] = useState({
     title: product.title,
     description: product.description,
@@ -38,10 +43,24 @@ const Product = ({ product, ratings }) => {
     setEditMode(false);
   };
 
+  const handleAddToCart = () => {
+    const newProduct = {
+      ...product,
+      title,
+      description,
+      ratingsVal,
+      price,
+      cpId: nanoid(),
+    };
+    dispatch(addProduct(newProduct));
+  };
+
   const saveProduct = () => {
     setEditMode(false);
   };
-
+  const handleDeleteProduct = () => {
+    deleteproduct(product.id);
+  };
   return editMode ? (
     <div className="productContainer">
       <div className="productLeftContainer">
@@ -98,12 +117,15 @@ const Product = ({ product, ratings }) => {
       <div className="productRightContainer">
         <p className="productDescription">{description}</p>
         <div className="productsButtons">
-          <BiTrashAlt className="trashIcon icon" />
+          <BiTrashAlt
+            className="trashIcon icon"
+            onClick={handleDeleteProduct}
+          />
           <FiEdit2
             className="editIcon icon"
             onClick={() => setEditMode(true)}
           />
-          <BsCartPlus className="icon addCartIcon" />
+          <BsCartPlus className="icon addCartIcon" onClick={handleAddToCart} />
         </div>
       </div>
     </div>
