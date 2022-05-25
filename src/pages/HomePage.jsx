@@ -17,6 +17,7 @@ const HomePage = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const [products, setProducts] = useState([]);
+
   const [sort, setSort] = useState(false);
 
   // handleing deleting products
@@ -35,22 +36,34 @@ const HomePage = () => {
     toast("Product Added", { type: "success" });
   };
 
-  const sortProducts = () => {
+  const sortHelper = () => {
+    if (sort) {
+      unFilter();
+      return setSort(false);
+    }
+    filter();
+    setSort(true);
+  };
+  const filter = () => {
     const filter = products.sort((p1, p2) => p1.price - p2.price);
-    const orignal = JSON.parse(localStorage.getItem("re-products"));
-    return sort ? filter : orignal;
+    setProducts(filter);
+  };
+  const unFilter = () => {
+    const org = JSON.parse(localStorage.getItem("re-products"));
+    setProducts(org);
   };
 
+  console.log(sort);
   return (
     <div className="homePage">
-      <div className="sortContainer" onClick={() => setSort(!sort)}>
+      <div className="sortContainer" onClick={sortHelper}>
         <span className={`${sort && "sortTextActive"} sortText`}>
           Sort By Price
         </span>
       </div>
       <div className="productsContainer">
-        {sortProducts().length > 0 &&
-          sortProducts().map((product) => (
+        {products.length > 0 &&
+          products.map((product) => (
             <Product
               key={product.id}
               product={product}
