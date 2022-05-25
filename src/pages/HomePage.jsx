@@ -9,11 +9,15 @@ import "../styles/HomePage.css";
 
 const HomePage = () => {
   useEffect(() => {
-    getAllProductssAPI().then((data) => setProducts(data));
+    getAllProductssAPI().then((data) => {
+      localStorage.setItem("re-products", JSON.stringify(data));
+      setProducts(data);
+    });
   }, []);
   const [openModal, setOpenModal] = useState(false);
 
   const [products, setProducts] = useState([]);
+  const [sort, setSort] = useState(false);
 
   // handleing deleting products
   const deleteProductHandler = (id) => {
@@ -31,11 +35,22 @@ const HomePage = () => {
     toast("Product Added", { type: "success" });
   };
 
+  const sortProducts = () => {
+    const filter = products.sort((p1, p2) => p1.price - p2.price);
+    const orignal = JSON.parse(localStorage.getItem("re-products"));
+    return sort ? filter : orignal;
+  };
+
   return (
     <div className="homePage">
+      <div className="sortContainer" onClick={() => setSort(!sort)}>
+        <span className={`${sort && "sortTextActive"} sortText`}>
+          Sort By Price
+        </span>
+      </div>
       <div className="productsContainer">
-        {products.length > 0 &&
-          products.map((product) => (
+        {sortProducts().length > 0 &&
+          sortProducts().map((product) => (
             <Product
               key={product.id}
               product={product}
